@@ -51,8 +51,8 @@ class LoginController extends Controller
         if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']))) {
             return redirect()->route('home');
         } else {
-            return redirect()->route('login')
-            ->with('error', "Sorry, we couldn't find an account with this username. Please check you're using the right username and try again.");
+            return back()->withInput()
+            ->withErrors(['username' => "Sorry, we couldn't find an account with this username. Please check you're using the right username and try again."]);
         }
     }
 }
